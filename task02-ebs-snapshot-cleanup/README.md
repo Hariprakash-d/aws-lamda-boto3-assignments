@@ -1,9 +1,23 @@
-markdown
+
 # Automated EBS Snapshot Creation and Cleanup Engine
 
 An event-driven AWS serverless architecture that automates Elastic Block Store (EBS) volume backups and enforces a strict 30-day retention cleanup policy. This project uses an AWS Lambda function running Python (Boto3) orchestrated by Amazon EventBridge cron schedules.
 
 ## Architecture Blueprint
+
+
+```mermaid
+graph TD
+    EB[Amazon EventBridge<br>Weekly Schedule] -->|Triggers| Lambda[AWS Lambda Function]
+    IAM[IAM Execution Role<br>Least-Privilege] -.->|Provides Permissions| Lambda
+    
+    Lambda -->|1. EC2:CreateSnapshot| Create[Generates tagged volume backups]
+    Lambda -->|2. EC2:DeleteSnapshot| Delete[Purges expired >30 days snapshots]
+
+    style Lambda fill:#ff9900,stroke:#333,stroke-width:2px,color:#fff
+    style EB fill:#ff4f4f,stroke:#333,stroke-width:1px,color:#fff
+    style IAM fill:#232f3e,stroke:#333,stroke-width:1px,color:#fff
+```
 
 ---
 
