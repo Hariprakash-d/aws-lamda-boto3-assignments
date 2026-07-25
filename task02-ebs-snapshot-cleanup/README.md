@@ -1,3 +1,4 @@
+markdown
 # Automated EBS Snapshot Creation and Cleanup Engine
 
 An event-driven AWS serverless architecture that automates Elastic Block Store (EBS) volume backups and enforces a strict 30-day retention cleanup policy. This project uses an AWS Lambda function running Python (Boto3) orchestrated by Amazon EventBridge cron schedules.
