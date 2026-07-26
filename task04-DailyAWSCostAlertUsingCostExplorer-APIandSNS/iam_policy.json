@@ -1,0 +1,27 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "CostExplorerMetricsAccess",
+            "Effect": "Allow",
+            "Action": "ce:GetCostAndUsage",
+            "Resource": "*"
+        },
+        {
+            "Sid": "TargetedSNSPublishing",
+            "Effect": "Allow",
+            "Action": "sns:Publish",
+            "Resource": "YOUR_SNS_TOPIC_ARN"
+        },
+        {
+            "Sid": "CloudWatchLogging",
+            "Effect": "Allow",
+            "Action": [
+                "logs:CreateLogGroup",
+                "logs:CreateLogStream",
+                "logs:PutLogEvents"
+            ],
+            "Resource": "arn:aws:logs:*:*:*"
+        }
+    ]
+}
